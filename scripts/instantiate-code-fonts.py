@@ -43,6 +43,14 @@ except IndexError:
 with open(configPath, encoding='utf-8') as file:
     fontOptions = yaml.load(file, Loader=yaml.FullLoader)
 
+familyName = fontOptions.get("Family Name")
+if familyName is None:
+    familyName = ""
+elif not isinstance(familyName, str):
+    familyName = str(familyName)
+familyName = familyName.strip()
+familyNameSuffix = f" {familyName}" if familyName else ""
+
 # GET / SET NAME HELPER FUNCTIONS
 
 def getFontNameID(font, ID, platformID=3, platEncID=1):
@@ -76,8 +84,8 @@ def setFontNameID(font, ID, newName):
 oldName = "Recursive"
 
 def splitFont(
-        outputDirectory=f"RecMono{fontOptions['Family Name']}".replace(" ",""),
-        newName="Rec Mono",
+        outputDirectory=f"RecursiveMono{familyName}".replace(" ",""),
+        newName="Recursive Mono",
 ):
 
     # access font as TTFont object
@@ -108,7 +116,7 @@ def splitFont(
         currentPsName = getFontNameID(instanceFont, 6)
         newPsName = (currentPsName\
             .replace("Sans", "")\
-            .replace(oldName,newName.replace(" ", "") + fontOptions['Family Name'].replace(" ",""))\
+            .replace(oldName,newName.replace(" ", "") + familyName.replace(" ",""))\
             .replace("LinearLight", instance.replace(" ", "")))
         setFontNameID(instanceFont, 6, newPsName)
 
@@ -116,7 +124,7 @@ def splitFont(
         currentFullName = getFontNameID(instanceFont, 4)
         newFullName = (currentFullName\
             .replace("Sans", "")\
-            .replace(oldName, newName + " " + fontOptions['Family Name'])\
+            .replace(oldName, f"{newName}{familyNameSuffix}")\
             .replace(" Linear Light", instance))\
             .replace(" Regular", "")
         setFontNameID(instanceFont, 4, newFullName)
@@ -138,7 +146,7 @@ def splitFont(
         setFontNameID(instanceFont, 16, newFamName)
 
         newFileName = fontFileName\
-            .replace(oldName, (newName + fontOptions['Family Name']).replace(" ", ""))\
+            .replace(oldName, (newName + familyName).replace(" ", ""))\
             .replace("_VF_", "-" + instance.replace(" ", "") + "-")
 
         # make dir for new fonts

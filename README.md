@@ -29,7 +29,7 @@ The basic way to use this tool is to:
 3. Run the build script
 4. Install the fonts and activate `calt` in your coding app, if you want the code ligatures to be active
 
-This instantiates custom fonts for Regular, Italic, Bold, and Bold Italic styles, which you can then use in your preferred editor. One VS Code theme that supports Italics is the [Recursive Theme](https://github.com/arrowtype/recursive-theme).
+This instantiates custom fonts for the styles listed under `Fonts` (commonly Regular, Italic, Light, Bold, and Bold Italic), which you can then use in your preferred editor. One VS Code theme that supports Italics is the [Recursive Theme](https://github.com/arrowtype/recursive-theme).
 
 ### Video tutorial for Python beginners
 
@@ -44,7 +44,7 @@ You can also follow the instructions below. I have tried to make them pretty gra
 #### Prerequisites for this Python project
 
 - To work directly with these examples, you should have [Git set up on your computer](https://help.github.com/en/github/getting-started-with-github/set-up-git).
-- To run the font-building script, you must also [Download Python](http://python.org/download/) and install it if you haven’t already.
+- To run the font-building script, you must also [Download Python](http://python.org/download/) and install it if you haven’t already. Python 3.12 is supported and recommended.
 - This uses a virtual environment to keep installed Python modules contained. If you are used to using node_modules in a JavaScript-based project, it’s somewhat similar to that.
 
 In a terminal, use `cd` to get to a folder you want this project in. Then, clone the repo and move into it:
@@ -59,18 +59,8 @@ cd recursive-code-config
 Then, set up the venv and install requirements:
 
 ```bash
-python3 -m venv venv             # make a virtual environment called "venv"
+python3.12 -m venv venv           # make a virtual environment called "venv"
 source venv/bin/activate         # activate the virtual environment
-pip install -r requirements.txt  # install dependencies
-```
-
-##### Using the venv, on Windows
-
-Setting up the venv and install requirements is slightly different in Windows, in my testing. Navigate to the project in a terminal, and then use the following commands:
-
-```bash
-py -m venv venv                  # make a virtual environment called "venv"
-venv\Scripts\activate            # activate the virtual environment 
 pip install -r requirements.txt  # install dependencies
 ```
 
@@ -78,7 +68,7 @@ pip install -r requirements.txt  # install dependencies
 
 This file uses YAML. Hopefully, it is fairly self-explanatory. If not, file an issue and someone will hopefully help out!
 
-First, specify the family name you want (e.g. `Rec Mono Custom`). 
+First, specify the family name you want (e.g. `Recursive Mono Custom`). 
 
 Then, specify axis values you want for Regular, Italic, Bold, & Bold Italic fonts.
 
@@ -121,7 +111,7 @@ source venv/bin/activate         # activate the virtual environment if you haven
 python3 scripts/instantiate-code-fonts.py
 ```
 
-It will build & output fonts to a folder like `RecMono-Custom` (this is affected by whatever custom name you give fonts in config.yaml).
+It will build & output fonts to a folder like `RecursiveMono-Custom` (this is affected by whatever custom name you give fonts in config.yaml).
 
 #### 3. Install the fonts and activate the ligatures!
 
